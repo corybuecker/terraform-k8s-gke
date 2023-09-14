@@ -53,7 +53,7 @@ resource "google_container_node_pool" "container-cluster-nodes" {
 
   node_config {
     disk_size_gb    = 10
-    machine_type    = "c3-standard-4"
+    machine_type    = "n2d-standard-2"
     spot            = true
     service_account = google_service_account.gce-service-account.email
     oauth_scopes    = ["https://www.googleapis.com/auth/cloud-platform"]
