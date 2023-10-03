@@ -21,7 +21,7 @@ data "google_iam_policy" "exlytics-storage-iam" {
   binding {
     role = "roles/storage.objectCreator"
     members = [
-      "serviceAccount:${google_service_account.gce-service-account.email}",
+      "serviceAccount:${module.service-accounts["id"].email}",
     ]
   }
 }
@@ -37,7 +37,7 @@ data "google_iam_policy" "exlytics-storage-development-iam" {
   binding {
     role = "roles/storage.objectCreator"
     members = [
-      "serviceAccount:${google_service_account.developer-service-account.email}"
+      "serviceAccount:${module.service-accounts["dev"].email}"
     ]
   }
 }

@@ -8,56 +8,51 @@ provider "google-beta" {
   region  = var.region
 }
 
-resource "google_service_account" "gce-service-account" {
-  account_id   = "${var.base}-id"
-  display_name = "Kubernetes cluster service account"
-  description  = "Kubernetes cluster service account"
+module "service-accounts" {
+  for_each = {
+    id = {
+      roles : [
+        "roles/logging.logWriter",
+        "roles/monitoring.metricWriter",
+        "roles/stackdriver.resourceMetadata.writer",
+        "roles/artifactregistry.reader",
+        "roles/iam.serviceAccountTokenCreator"
+      ],
+      workload-identities : []
+    }
+    dev            = { roles : ["roles/iam.serviceAccountTokenCreator"], workload-identities : [] }
+    github-actions = { roles : [], workload-identities : [] }
+    external-dns   = { roles : ["roles/dns.admin"], workload-identities : ["external-dns/external-dns"] }
+  }
+  source              = "./modules/service_accounts"
+  account             = "${var.base}-${each.key}"
+  project             = var.project
+  roles               = each.value.roles
+  workload-identities = each.value.workload-identities
 }
 
-resource "google_service_account" "developer-service-account" {
-  account_id   = "${var.base}-dev"
-  display_name = "Developer service account"
-  description  = "Developer service account"
+resource "google_iam_workload_identity_pool" "workload-identity-pool" {
+  workload_identity_pool_id = "${var.base}-pool"
 }
 
-resource "google_project_iam_member" "service-account-log-writer-role" {
-  project = var.project
-  role    = "roles/logging.logWriter"
-  member  = "serviceAccount:${google_service_account.gce-service-account.email}"
+resource "google_iam_workload_identity_pool_provider" "workload-identity-pool-provider" {
+  workload_identity_pool_id          = google_iam_workload_identity_pool.workload-identity-pool.workload_identity_pool_id
+  workload_identity_pool_provider_id = "${var.base}-pool-provider"
+  attribute_mapping = {
+    "google.subject"       = "assertion.sub",
+    "attribute.actor"      = "assertion.actor",
+    "attribute.repository" = "assertion.repository"
+  }
+  oidc {
+    issuer_uri = "https://token.actions.githubusercontent.com"
+  }
 }
 
-resource "google_project_iam_member" "service-account-metric-writer-role" {
-  project = var.project
-  role    = "roles/monitoring.metricWriter"
-  member  = "serviceAccount:${google_service_account.gce-service-account.email}"
-}
+resource "google_service_account_iam_binding" "github-actions-policy-binding" {
+  service_account_id = module.service-accounts["github-actions"].id
+  role               = "roles/iam.workloadIdentityUser"
 
-resource "google_project_iam_member" "service-account-metadata-writer-role" {
-  project = var.project
-  role    = "roles/stackdriver.resourceMetadata.writer"
-  member  = "serviceAccount:${google_service_account.gce-service-account.email}"
-}
-
-resource "google_project_iam_member" "service-account-artifact-reader-role" {
-  project = var.project
-  role    = "roles/artifactregistry.reader"
-  member  = "serviceAccount:${google_service_account.gce-service-account.email}"
-}
-
-resource "google_project_iam_member" "service-account-dns-management-role" {
-  project = var.project
-  role    = "roles/dns.admin"
-  member  = "serviceAccount:${google_service_account.gce-service-account.email}"
-}
-
-resource "google_project_iam_member" "service-account-token-creator-role" {
-  project = var.project
-  role    = "roles/iam.serviceAccountTokenCreator"
-  member  = "serviceAccount:${google_service_account.gce-service-account.email}"
-}
-
-resource "google_project_iam_member" "developer-service-account-token-creator-role" {
-  project = var.project
-  role    = "roles/iam.serviceAccountTokenCreator"
-  member  = "serviceAccount:${google_service_account.developer-service-account.email}"
+  members = [
+    var.github_workload_principal
+  ]
 }

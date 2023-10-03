@@ -36,6 +36,10 @@ resource "google_container_cluster" "container-cluster" {
   default_snat_status {
     disabled = true
   }
+
+  workload_identity_config {
+    workload_pool = "${var.project}.svc.id.goog"
+  }
 }
 
 resource "google_container_node_pool" "container-cluster-nodes" {
@@ -55,7 +59,7 @@ resource "google_container_node_pool" "container-cluster-nodes" {
     disk_size_gb    = 10
     machine_type    = "n2d-standard-2"
     spot            = true
-    service_account = google_service_account.gce-service-account.email
+    service_account = module.service-accounts["id"].email
     oauth_scopes    = ["https://www.googleapis.com/auth/cloud-platform"]
     tags            = ["${var.base}-pool-node"]
   }
