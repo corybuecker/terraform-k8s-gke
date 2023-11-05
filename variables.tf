@@ -9,21 +9,25 @@ variable "base" {
 }
 
 variable "primary_account_email" {
-  type      = string
-  sensitive = true
+  type = string
 }
 
 variable "project" {
-  type      = string
-  sensitive = true
+  type = string
 }
 
 variable "domain" {
-  type      = string
-  sensitive = true
+  type = string
 }
 
 variable "master_authorized_networks_config_ip" {
-  type      = string
-  sensitive = true
+  type = string
+}
+
+variable "github_workload_principal" {
+  type = string
+}
+
+variable "zones" {
+  type = list(string)
 }

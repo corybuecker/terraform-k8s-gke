@@ -1,9 +1,3 @@
-resource "google_service_account" "github-actions-service-account" {
-  account_id   = "${var.base}-github-actions"
-  display_name = "GitHub Actions"
-  description  = "GitHub Actions"
-}
-
 resource "google_artifact_registry_repository" "github-actions-repo" {
   provider = google-beta
 
@@ -19,5 +13,5 @@ resource "google_artifact_registry_repository_iam_member" "member" {
   location   = google_artifact_registry_repository.github-actions-repo.location
   repository = google_artifact_registry_repository.github-actions-repo.name
   role       = "roles/artifactregistry.repoAdmin"
-  member     = "serviceAccount:${google_service_account.github-actions-service-account.email}"
+  member     = "serviceAccount:${module.service-accounts["github-actions"].email}"
 }
