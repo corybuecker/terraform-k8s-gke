@@ -16,10 +16,6 @@ variable "project" {
   type = string
 }
 
-variable "domain" {
-  type = string
-}
-
 variable "master_authorized_networks_config_ip" {
   type = string
 }
