@@ -6,6 +6,7 @@ resource "google_container_cluster" "container-cluster" {
   networking_mode          = "VPC_NATIVE"
   network                  = google_compute_network.network.self_link
   subnetwork               = google_compute_subnetwork.subnetwork.self_link
+  deletion_protection      = false
 
   ip_allocation_policy {
     cluster_secondary_range_name  = "kubernetes-pods"
@@ -22,6 +23,7 @@ resource "google_container_cluster" "container-cluster" {
     enable_private_nodes    = true
     enable_private_endpoint = false
     master_ipv4_cidr_block  = "11.3.10.0/28"
+
     master_global_access_config {
       enabled = false
     }
