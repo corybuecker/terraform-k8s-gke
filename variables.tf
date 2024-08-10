@@ -24,6 +24,10 @@ variable "github_workload_principal" {
   type = string
 }
 
+variable "github_workload_assertion" {
+  type = string
+}
+
 variable "zones" {
   type = list(string)
 }

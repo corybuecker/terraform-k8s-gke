@@ -1,3 +1,5 @@
+helm repo add jetstack https://charts.jetstack.io
+helm repo update
 helm install cert-manager cert-manager --repo https://charts.jetstack.io --namespace cert-manager --create-namespace --set installCRDs=true
 
 ```yaml
