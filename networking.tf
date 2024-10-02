@@ -9,15 +9,16 @@ resource "google_compute_subnetwork" "subnetwork" {
   name                     = "${var.base}-subnetwork"
   network                  = google_compute_network.network.id
   private_ip_google_access = true
-  secondary_ip_range = [
-    {
-      range_name    = "kubernetes-pods"
-      ip_cidr_range = "11.56.0.0/14"
-      }, {
-      range_name    = "kubernetes-services"
-      ip_cidr_range = "11.44.0.0/14"
-    }
-  ]
+
+  secondary_ip_range {
+    range_name    = "kubernetes-pods"
+    ip_cidr_range = "11.56.0.0/14"
+  }
+
+  secondary_ip_range {
+    range_name    = "kubernetes-services"
+    ip_cidr_range = "11.44.0.0/14"
+  }
 }
 
 resource "google_compute_route" "internet-gateway" {
