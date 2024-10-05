@@ -58,7 +58,7 @@ resource "google_container_node_pool" "container-cluster-nodes" {
   }
 
   node_config {
-    disk_size_gb    = 10
+    disk_size_gb    = 15
     machine_type    = "n2d-standard-2"
     spot            = true
     service_account = module.service-accounts["id"].email

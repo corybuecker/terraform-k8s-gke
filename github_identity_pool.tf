@@ -4,6 +4,16 @@ resource "google_artifact_registry_repository" "repository" {
   location      = "us-central1"
   repository_id = "github-actions-repo"
   format        = "DOCKER"
+
+  cleanup_policies {
+    id     = "delete-old"
+    action = "DELETE"
+
+    condition {
+      tag_state  = "UNTAGGED"
+      older_than = "604800s"
+    }
+  }
 }
 
 resource "google_iam_workload_identity_pool" "github-identity-pool" {

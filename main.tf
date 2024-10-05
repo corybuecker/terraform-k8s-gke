@@ -22,7 +22,7 @@ module "service-accounts" {
     }
     dev            = { roles : ["roles/iam.serviceAccountTokenCreator"], workload-identities : [] }
     github-actions = { roles : [], workload-identities : [] }
-    external-dns   = { roles : ["roles/dns.admin"], workload-identities : ["external-dns/external-dns"] }
+    # external-dns   = { roles : ["roles/dns.admin"], workload-identities : ["external-dns/external-dns"] }
   }
   source              = "./modules/service_accounts"
   account             = "${var.base}-${each.key}"
