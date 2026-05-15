@@ -42,9 +42,13 @@ resource "google_container_cluster" "container-cluster" {
   workload_identity_config {
     workload_pool = "${var.project}.svc.id.goog"
   }
+
+  gateway_api_config {
+    channel = "CHANNEL_STANDARD"
+  }
 }
 
-resource "google_container_node_pool" "container-cluster-nodes" {
+resource "google_container_node_pool" "node_pool" {
   provider = google-beta
 
   cluster    = google_container_cluster.container-cluster.name
@@ -58,24 +62,34 @@ resource "google_container_node_pool" "container-cluster-nodes" {
   }
 
   node_config {
-    disk_size_gb    = 10
-    machine_type    = "n2d-standard-2"
+    disk_size_gb    = 15
+    machine_type    = "n4a-standard-2"
+    disk_type       = "hyperdisk-balanced"
     spot            = true
-    service_account = module.service-accounts["id"].email
+    service_account = module.service-accounts["node"].email
     oauth_scopes    = ["https://www.googleapis.com/auth/cloud-platform"]
-    tags            = ["${var.base}-pool-node"]
+    tags            = ["${var.base}-node-pool"]
+
+    shielded_instance_config {
+      enable_secure_boot          = true
+      enable_integrity_monitoring = true
+    }
+
+    workload_metadata_config {
+      mode = "GKE_METADATA"
+    }
   }
 }
 
-resource "google_compute_firewall" "ingress-controller" {
-  name    = "ingress-controller-kubernetes"
-  network = google_compute_network.network.name
+# resource "google_compute_firewall" "ingress-controller" {
+#   name    = "ingress-controller-kubernetes"
+#   network = google_compute_network.network.name
 
-  allow {
-    protocol = "tcp"
-    ports    = ["8443", "8080"]
-  }
+#   allow {
+#     protocol = "tcp"
+#     ports    = ["8443", "8080"]
+#   }
 
-  source_ranges = ["11.3.10.0/28"]
-  target_tags   = ["${var.base}-pool-node"]
-}
+#   source_ranges = ["11.3.10.0/28"]
+#   target_tags   = ["${var.base}-pool-node"]
+# }

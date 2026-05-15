@@ -20,14 +20,10 @@ variable "master_authorized_networks_config_ip" {
   type = string
 }
 
-variable "github_workload_principal" {
-  type = string
-}
-
-variable "github_workload_assertion" {
-  type = string
-}
-
 variable "zones" {
   type = list(string)
+}
+
+variable "domains" {
+  type = set(string)
 }
