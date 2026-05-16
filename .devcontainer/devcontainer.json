@@ -1,0 +1,19 @@
+{
+    "image": "mcr.microsoft.com/devcontainers/base:trixie",
+    "runArgs": [
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges"
+    ],
+    "features": {
+        "ghcr.io/devcontainers/features/terraform:1": {
+            "version": "1.15.3"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "anthropic.claude-code"
+            ]
+        }
+    }
+}
