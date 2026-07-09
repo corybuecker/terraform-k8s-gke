@@ -2,23 +2,23 @@
 # Manual edits may be lost in future updates.
 
 provider "registry.terraform.io/hashicorp/google" {
-  version     = "7.32.0"
-  constraints = "7.32.0"
+  version     = "7.39.0"
+  constraints = "7.39.0"
   hashes = [
-    "h1:hDMENgq6nxoM6ttxN1HNrqbYiyRV8avLmUuUe4QWvKY=",
-    "h1:m0VrMfAAEbCE5Vazes3dsqwKzUaXlSMizE6PhxBzPwk=",
-    "zh:091afeeeb58035f26ebaec34755a15d56e3229c4ce6db2745c52ba2593204a30",
-    "zh:15d6a375c49d023dd21e612610b12bf79fbc6459bc5ad64b989d2180e9931f7d",
-    "zh:2c70ee949b01c0c7925618e36417ac5b9c1de91c66bb0bd956b2b2bd1d38a2b6",
-    "zh:2e531cf6f3af847104df65675ebd9c9a7450ba91d8d21ff6ed04eeab6a5684e2",
-    "zh:42fece780ef909136213762731c945d59c58dbaf92f64a46989102da9ebfa998",
-    "zh:9008b13bec8c588ef41ec813c3d67d26acb22ada241d9dd9ed408687607726cc",
-    "zh:a62e09bd551de8ea74b68c1eb44f9d7d0dc56957811915d46ec0a28254a30e0b",
-    "zh:ad3d4419561d19e88b72ad4bedbbc73ee77f20acb594261be8f716bf1a89f947",
-    "zh:af0c23df89e5fb815751c64c9a438527d6e0609df52fa7e281dbd90aa238270b",
-    "zh:b4d1157559d04792441550ae79f13d16bd7cc3f80a9616cd9ef3f83466564ce4",
-    "zh:db32528838dc9641981769012bdabf21e658756f1581ccbcd239aab0eb4aed11",
+    "h1:puGPa0+bhExUuGnYGf1i54/kYSJ1ZEruF0fsAat831M=",
+    "h1:rk2YwbN0TWOWZ/7Hf2043zy/WKy2GpsAFhmAl5JdgAQ=",
+    "zh:00eea2ae6d24e580a107574e3a93fcace52e2f1d912c3f7d1cdeadd9f0449443",
+    "zh:3b626035e0ea3ec8aa0720cd976cda6f252645cfa90253d5d3b087c56a74d514",
+    "zh:42505c5304e30208a30edb62385cca4f5f648a38f386158f86b39d39516d59c1",
+    "zh:97b1959fc2c5f39db12ee7a8929227efd004bc389935f893d4a3e4fb48713c72",
+    "zh:9d4ccd2f4f0c89affabd07ab3ec6ddfae1de5ee9633cc3233a5dc63980ca89ca",
+    "zh:9e1dccb6efff92b2221c68ab00dbe82e184a48aeb5f21392ada4767ac64cd08e",
+    "zh:b752408bb4d9693565526eeb73986e5cbc8626acd906df49eef0cdd7e13cac14",
+    "zh:d3eea63e3b58ba564d6a3065f839cde790ddf091501f931fe08002133797b0a3",
+    "zh:eb1f9fc07e7a1d23d64194534d03ff43e0f95bd2f65a7286ed247290461d3dfc",
     "zh:f569b65999264a9416862bca5cd2a6177d94ccb0424f3a4ef424428912b9cb3c",
+    "zh:f9bf75d75117a1da609042a2ee63a8fab31b6206c93260da3fc343bd67453f97",
+    "zh:ff18322b786ad6216ee3aebb02e6374223eaa16b5f181109089786128718afc3",
   ]
 }
 
