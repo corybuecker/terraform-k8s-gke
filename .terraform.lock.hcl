@@ -2,22 +2,22 @@
 # Manual edits may be lost in future updates.
 
 provider "registry.terraform.io/hashicorp/google" {
-  version     = "7.32.0"
-  constraints = "7.32.0"
+  version     = "7.42.0"
+  constraints = "7.42.0"
   hashes = [
-    "h1:hDMENgq6nxoM6ttxN1HNrqbYiyRV8avLmUuUe4QWvKY=",
-    "h1:m0VrMfAAEbCE5Vazes3dsqwKzUaXlSMizE6PhxBzPwk=",
-    "zh:091afeeeb58035f26ebaec34755a15d56e3229c4ce6db2745c52ba2593204a30",
-    "zh:15d6a375c49d023dd21e612610b12bf79fbc6459bc5ad64b989d2180e9931f7d",
-    "zh:2c70ee949b01c0c7925618e36417ac5b9c1de91c66bb0bd956b2b2bd1d38a2b6",
-    "zh:2e531cf6f3af847104df65675ebd9c9a7450ba91d8d21ff6ed04eeab6a5684e2",
-    "zh:42fece780ef909136213762731c945d59c58dbaf92f64a46989102da9ebfa998",
-    "zh:9008b13bec8c588ef41ec813c3d67d26acb22ada241d9dd9ed408687607726cc",
-    "zh:a62e09bd551de8ea74b68c1eb44f9d7d0dc56957811915d46ec0a28254a30e0b",
-    "zh:ad3d4419561d19e88b72ad4bedbbc73ee77f20acb594261be8f716bf1a89f947",
-    "zh:af0c23df89e5fb815751c64c9a438527d6e0609df52fa7e281dbd90aa238270b",
-    "zh:b4d1157559d04792441550ae79f13d16bd7cc3f80a9616cd9ef3f83466564ce4",
-    "zh:db32528838dc9641981769012bdabf21e658756f1581ccbcd239aab0eb4aed11",
+    "h1:JqhNUoY3Jw6g4lfznOd4B8qXh2lNetk5/W+dWVZJUwI=",
+    "h1:gN0gSVFKLscRyG28ngPvWKEp8JnWa3iASU+mdG+H7Wo=",
+    "zh:30b25728203b9208a167fac3f9880c10242fc5accdd29ba01b21355566fc4e3d",
+    "zh:4468f6ea772e991d890724e44f628a24dae44c9028af654469454d05b00b10ec",
+    "zh:4dfa4f7bcd72ea89f6f3f7411d88bf9a1f060699830e1f1f85bf32102be754b3",
+    "zh:59cf73879f10ad9d29ff8ad96559a476e70695bed26b84b6189728129674618c",
+    "zh:73a7966ae1c6db8a3dc31eb43f05dddd27a47f3ff42e25f62594fc0d5b438412",
+    "zh:7c2ea415fb06147cf9834b2169d75a52bd979ad291bed32c94d9a9307316f7ba",
+    "zh:962efdd3dee2b98860528555b0616ca0c8987dfc6c5e5df6d1c025c9b22c2f26",
+    "zh:c4a5ca9f20cbfbdcb88064d53d16f2ce8038e1ddc3303c7261152856728700b5",
+    "zh:ca56a9477177530737d07feea70bb99309414a7c18aa62f975644138606e1faf",
+    "zh:d0c6db8b1da363f69087569716ed96a3a6dadb4b872f598d442d867bd0706fa9",
+    "zh:ddd2472052e0c5c3fab7cffae8376e8855c35ad8614ba8631f7e448e72a41f21",
     "zh:f569b65999264a9416862bca5cd2a6177d94ccb0424f3a4ef424428912b9cb3c",
   ]
 }
